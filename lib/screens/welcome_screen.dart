@@ -1,5 +1,6 @@
-import 'package:flash_chat/screens/login_screen.dart';
+import 'package:flash_chat/screens/apps.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
+import 'package:flash_chat/screens/ui_ux.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,25 +40,25 @@ class _WelcomeState extends State<Welcome> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Flash chat"),
+          Text("MY PORTFOLIO"),
           SizedBox(
             height: 20,
           ),
           MaterialButton(
               onPressed: (() {
                 setState(() {
-                  GoRouter.of(context).pushNamed(LoginScreen.id);
+                  GoRouter.of(context).pushNamed(UIUX.id);
                 });
               }),
-              child: Text("Log in")),
+              child: Text("UI/UX Designs")),
           SizedBox(
             height: 20,
           ),
           MaterialButton(
               onPressed: (() {
-                GoRouter.of(context).pushNamed(RegistrationScreen.id);
+                GoRouter.of(context).pushNamed(AppScreen.id);
               }),
-              child: Text("Register")),
+              child: Text(" MY Applications")),
         ],
       ),
     );

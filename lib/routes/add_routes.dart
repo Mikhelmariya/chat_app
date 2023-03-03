@@ -2,8 +2,8 @@ import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../screens/chat_screen.dart';
-import '../screens/login_screen.dart';
+import '../screens/ui_ux.dart';
+import '../screens/apps.dart';
 import '../screens/registration_screen.dart';
 import 'constant_routes.dart';
 
@@ -26,16 +26,16 @@ class Addroutes {
       ),
       GoRoute(
         path: '/login_screen',
-        name: LoginScreen.id,
+        name: AppScreen.id,
         pageBuilder: (context, state) {
-          return MaterialPage(child: LoginScreen());
+          return MaterialPage(child: AppScreen());
         },
       ),
       GoRoute(
-        path: '/chat_screen',
-        name: ChatScreen.id,
+        path: '/ui_ux',
+        name: UIUX.id,
         pageBuilder: (context, state) {
-          return MaterialPage(child: ChatScreen());
+          return MaterialPage(child: UIUX());
         },
       )
     ],
