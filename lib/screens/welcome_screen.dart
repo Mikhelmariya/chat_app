@@ -1,5 +1,7 @@
 import 'package:flash_chat/screens/login_screen.dart';
+import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -17,10 +19,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Navigator(
-          initialRoute: WelcomeScreen.id,
-          onGenerateRoute: (settings) {},
-        ),
+        body: Welcome(),
       ),
     );
   }
@@ -47,14 +46,18 @@ class _WelcomeState extends State<Welcome> {
           MaterialButton(
               onPressed: (() {
                 setState(() {
-                  Navigator.pushNamed(context, LoginScreen.id);
+                  GoRouter.of(context).pushNamed(LoginScreen.id);
                 });
               }),
               child: Text("Log in")),
           SizedBox(
             height: 20,
           ),
-          MaterialButton(onPressed: (() {}), child: Text("Register")),
+          MaterialButton(
+              onPressed: (() {
+                GoRouter.of(context).pushNamed(RegistrationScreen.id);
+              }),
+              child: Text("Register")),
         ],
       ),
     );
