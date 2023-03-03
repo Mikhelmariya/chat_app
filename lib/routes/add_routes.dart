@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/ui_ux.dart';
 import '../screens/apps.dart';
-import '../screens/registration_screen.dart';
+import '../screens/flutterbootcamp.dart';
 import 'constant_routes.dart';
 
 class Addroutes {
@@ -18,10 +18,10 @@ class Addroutes {
         },
       ),
       GoRoute(
-        path: '/registration_screen',
-        name: RegistrationScreen.id,
+        path: '/flutterbootcamp',
+        name: FlutterBootCamp.id,
         pageBuilder: (context, state) {
-          return MaterialPage(child: RegistrationScreen());
+          return MaterialPage(child: FlutterBootCamp());
         },
       ),
       GoRoute(

@@ -1,7 +1,7 @@
 import 'package:flash_chat/routes/add_routes.dart';
 import 'package:flash_chat/screens/ui_ux.dart';
 import 'package:flash_chat/screens/apps.dart';
-import 'package:flash_chat/screens/registration_screen.dart';
+import 'package:flash_chat/screens/flutterbootcamp.dart';
 import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 

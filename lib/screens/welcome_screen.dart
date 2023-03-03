@@ -1,5 +1,5 @@
 import 'package:flash_chat/screens/apps.dart';
-import 'package:flash_chat/screens/registration_screen.dart';
+import 'package:flash_chat/screens/flutterbootcamp.dart';
 import 'package:flash_chat/screens/ui_ux.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: Welcome(),
       ),
     );
@@ -40,11 +41,14 @@ class _WelcomeState extends State<Welcome> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("MY PORTFOLIO"),
+          Text(
+            "MY PORTFOLIO",
+            style: TextStyle(color: Colors.white),
+          ),
           SizedBox(
             height: 20,
           ),
-          MaterialButton(
+          TextButton(
               onPressed: (() {
                 setState(() {
                   GoRouter.of(context).pushNamed(UIUX.id);
@@ -54,11 +58,31 @@ class _WelcomeState extends State<Welcome> {
           SizedBox(
             height: 20,
           ),
-          MaterialButton(
+          TextButton(
               onPressed: (() {
                 GoRouter.of(context).pushNamed(AppScreen.id);
               }),
-              child: Text(" MY Applications")),
+              child: Text(
+                " MY Applications",
+              )),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton(
+              onPressed: (() {
+                GoRouter.of(context).pushNamed(FlutterBootCamp.id);
+              }),
+              child: Card(
+                color: Colors.white,
+                margin: EdgeInsets.only(left: 50, right: 50),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage("images/flutterlogo.png"),
+                  ),
+                  title: Text("Flutter Bootcamp -2023 "),
+                ),
+              )),
         ],
       ),
     );
