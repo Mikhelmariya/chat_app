@@ -5,6 +5,13 @@ class FlutterBootCamp extends StatelessWidget {
   static const String id = "flutterbootcamp";
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.blue, child: Text("Flutter"));
+    return Hero(
+      tag: "flutterlogo",
+      child: Container(
+        height: 50,
+        width: 50,
+        child: Image.asset("images/flutterlogo.png"),
+      ),
+    );
   }
 }

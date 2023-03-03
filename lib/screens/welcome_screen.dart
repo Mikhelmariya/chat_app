@@ -76,9 +76,12 @@ class _WelcomeState extends State<Welcome> {
                 color: Colors.white,
                 margin: EdgeInsets.only(left: 50, right: 50),
                 child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 25,
-                    backgroundImage: AssetImage("images/flutterlogo.png"),
+                  leading: Hero(
+                    tag: "flutterlogo",
+                    child: CircleAvatar(
+                      radius: 25,
+                      backgroundImage: AssetImage("images/flutterlogo.png"),
+                    ),
                   ),
                   title: Text("Flutter Bootcamp -2023 "),
                 ),
