@@ -32,6 +32,8 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^6.2.0
+  animated_text_kit: ^4.2.2
+  carousel_slider: ^4.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -64,6 +66,9 @@ flutter:
   assets:
     - images/bible.png
     - images/flutterlogo.png
+    - images/xox.png
+    - images/quizapp.png
+    - images/MI.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

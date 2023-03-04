@@ -3,14 +3,12 @@ import 'package:flash_chat/screens/flutterbootcamp.dart';
 import 'package:flash_chat/screens/ui_ux.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+import '../widgets/welcome_screen_card.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
-  //The properties of this class is not changed from obj to object.so declare as static
-  // constant value inside class should be made static
-  // now the properties are associated with class rather than object
-  static const String id = "WelcomeScreen";
-
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
@@ -18,23 +16,31 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
+  late Animation animation;
   @override
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
-
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    animation = ColorTween(begin: Colors.teal.shade500, end: Colors.black)
+        .animate(controller);
     controller.forward();
     controller.addListener(() {
-      print(controller.value);
+      setState(() {});
     });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: animation.value,
         body: Welcome(),
       ),
     );
@@ -55,9 +61,9 @@ class _WelcomeState extends State<Welcome> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "MY PORTFOLIO",
-            style: TextStyle(color: Colors.white),
+          TyperAnimatedTextKit(
+            text: ["MY PORTFOLIO"],
+            textStyle: TextStyle(color: Colors.white),
           ),
           SizedBox(
             height: 20,
@@ -68,7 +74,9 @@ class _WelcomeState extends State<Welcome> {
                   GoRouter.of(context).pushNamed(UIUX.id);
                 });
               }),
-              child: Text("UI/UX Designs")),
+              child: Welcome_screen_card(
+                text: 'MACHINE LEARNING',
+              )),
           SizedBox(
             height: 20,
           ),
@@ -76,8 +84,8 @@ class _WelcomeState extends State<Welcome> {
               onPressed: (() {
                 GoRouter.of(context).pushNamed(AppScreen.id);
               }),
-              child: Text(
-                " MY Applications",
+              child: Welcome_screen_card(
+                text: 'FLUTTER',
               )),
           SizedBox(
             height: 20,
@@ -87,7 +95,7 @@ class _WelcomeState extends State<Welcome> {
                 GoRouter.of(context).pushNamed(FlutterBootCamp.id);
               }),
               child: Card(
-                color: Colors.white,
+                color: Colors.teal,
                 margin: EdgeInsets.only(left: 50, right: 50),
                 child: ListTile(
                   leading: Hero(
