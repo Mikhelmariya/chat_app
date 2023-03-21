@@ -5,14 +5,10 @@ class My_App extends StatelessWidget {
     required this.title,
     required this.description,
     required this.image,
-    
-    
   });
-  final String title;
+  final TextFormField title;
   final String description;
   final String image;
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +18,18 @@ class My_App extends StatelessWidget {
       height: 400,
       width: 300,
       decoration: BoxDecoration(
-          color: Colors.black,
+          color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(30))),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              title,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-          ),
+              padding: const EdgeInsets.only(top: 10),
+              child: TextFormField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: "Enter title of app",
+                    border: OutlineInputBorder(),
+                  ))),
           Text(
             description,
             style: TextStyle(
@@ -48,3 +42,11 @@ class My_App extends StatelessWidget {
     );
   }
 }
+
+// Text(
+//               title,
+//               style: TextStyle(
+//                   fontSize: 20,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.white),
+//             ),
