@@ -1,3 +1,4 @@
+import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +13,14 @@ class Addroutes {
     routes: [
       GoRoute(
         path: '/',
-        name: Constant.WelcomeScreenRouteName,
+        name: RegistrationScreen.id,
+        pageBuilder: (context, state) {
+          return MaterialPage(child: RegistrationScreen());
+        },
+      ),
+      GoRoute(
+        path: '/welcomescreen',
+        name: WelcomeScreen.id,
         pageBuilder: (context, state) {
           return MaterialPage(child: WelcomeScreen());
         },

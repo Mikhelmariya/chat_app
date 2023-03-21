@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1018940373039",
+    "project_id": "myworks-20158",
+    "storage_bucket": "myworks-20158.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018940373039:android:1dd567df3476ac404feeda",
+        "android_client_info": {
+          "package_name": "com.example.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018940373039-o3pe4posvks3g65vu51ueag7tubuasrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDg0QOxcMxsnJgXGBlDPUVRR-LvfaqgTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018940373039-o3pe4posvks3g65vu51ueag7tubuasrs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

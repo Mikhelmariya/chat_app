@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
 class My_App extends StatelessWidget {
-  My_App(
-      {required this.title,
-      required this.description,
-      required this.image,
-      required this.link});
+  My_App({
+    required this.title,
+    required this.description,
+    required this.image,
+    
+    
+  });
   final String title;
   final String description;
   final String image;
-  final String link;
+
+  
 
   @override
   Widget build(BuildContext context) {

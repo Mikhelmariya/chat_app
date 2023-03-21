@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/screens/apps.dart';
 import 'package:flash_chat/screens/flutterbootcamp.dart';
 import 'package:flash_chat/screens/ui_ux.dart';
@@ -9,17 +10,34 @@ import '../widgets/welcome_screen_card.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+  static const String id = "welcomescreen";
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+final _auth = FirebaseAuth.instance;
+
+void getCurrentUser() async {
+  try {
+    final user = await _auth.currentUser!;
+    if (user != null) {
+      var loggedinuser = user;
+      print(loggedinuser.email);
+    }
+  } catch (e) {
+    print(e);
+  }
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation;
+
   @override
   void initState() {
     super.initState();
+    getCurrentUser();
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
     animation = ColorTween(begin: Colors.teal.shade500, end: Colors.black)
@@ -62,7 +80,7 @@ class _WelcomeState extends State<Welcome> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TyperAnimatedTextKit(
-            text: ["MY PORTFOLIO"],
+            text: ["MY Works"],
             textStyle: TextStyle(color: Colors.white),
           ),
           SizedBox(
@@ -94,19 +112,8 @@ class _WelcomeState extends State<Welcome> {
               onPressed: (() {
                 GoRouter.of(context).pushNamed(FlutterBootCamp.id);
               }),
-              child: Card(
-                color: Colors.teal,
-                margin: EdgeInsets.only(left: 50, right: 50),
-                child: ListTile(
-                  leading: Hero(
-                    tag: "flutterlogo",
-                    child: CircleAvatar(
-                      radius: 25,
-                      backgroundImage: AssetImage("images/flutterlogo.png"),
-                    ),
-                  ),
-                  title: Text("Flutter Bootcamp -2023 "),
-                ),
+              child: Welcome_screen_card(
+                text: 'REACT WEBSITES',
               )),
         ],
       ),

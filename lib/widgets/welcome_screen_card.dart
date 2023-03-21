@@ -10,3 +10,18 @@ class Welcome_screen_card extends StatelessWidget {
         child: ListTile(title: Text(text)));
   }
 }
+
+// Card(
+//                 color: Colors.teal,
+//                 margin: EdgeInsets.only(left: 50, right: 50),
+//                 child: ListTile(
+//                   leading: Hero(
+//                     tag: "flutterlogo",
+//                     child: CircleAvatar(
+//                       radius: 25,
+//                       backgroundImage: AssetImage("images/flutterlogo.png"),
+//                     ),
+//                   ),
+//                   title: Text("Flutter Bootcamp -2023 "),
+//                 ),
+//               )),
