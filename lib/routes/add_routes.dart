@@ -3,6 +3,8 @@ import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screens/home_screen.dart';
+import '../screens/login_screen.dart';
 import '../screens/ui_ux.dart';
 import '../screens/apps.dart';
 import '../screens/flutterbootcamp.dart';
@@ -13,6 +15,20 @@ class Addroutes {
     routes: [
       GoRoute(
         path: '/',
+        name: HomeScreen.id,
+        pageBuilder: (context, state) {
+          return MaterialPage(child: HomeScreen());
+        },
+      ),
+      GoRoute(
+        path: '/loginscreen',
+        name: LoginScreen.id,
+        pageBuilder: (context, state) {
+          return MaterialPage(child: LoginScreen());
+        },
+      ),
+      GoRoute(
+        path: '/registration',
         name: RegistrationScreen.id,
         pageBuilder: (context, state) {
           return MaterialPage(child: RegistrationScreen());
