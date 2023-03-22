@@ -6,9 +6,10 @@ class My_App extends StatelessWidget {
     required this.description,
     required this.image,
   });
-  final TextFormField title;
+
   final String description;
   final String image;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +23,7 @@ class My_App extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(30))),
       child: Column(
         children: [
-          Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: "Enter title of app",
-                    border: OutlineInputBorder(),
-                  ))),
+          Padding(padding: const EdgeInsets.only(top: 10), child: Text(title)),
           Text(
             description,
             style: TextStyle(

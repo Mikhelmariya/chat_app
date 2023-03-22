@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
 import '../model/projects.dart';
 import '../widgets/my_apps.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,8 +17,10 @@ Future<void> _launchUrl(String url) async {
   }
 }
 
+String _titletext = "app";
+
 class AppScreen extends StatelessWidget {
-  TextEditingController titlecontroller = new TextEditingController();
+  final _titlecontroller = TextEditingController();
 
   final controller = PageController();
 
@@ -44,12 +47,17 @@ class AppScreen extends StatelessWidget {
         backgroundColor: Colors.grey,
         body: Column(
           children: [
+            TextField(
+              keyboardType: TextInputType.text,
+              controller: _titlecontroller,
+              // onChanged: (value) {
+              //   _titletext = value;
+              // },
+            ),
             CarouselSlider(
               items: [
                 My_App(
-                  title: TextFormField(
-                    controller: titlecontroller,
-                  ),
+                  title: _titlecontroller.text,
                   description:
                       "This app generates random bible verse on tapping the button",
                   image: "images/bible.png",
@@ -79,10 +87,15 @@ class AppScreen extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   print("text");
-                  print(titlecontroller.text);
-                  _firestore
-                      .collection("work")
-                      .add({'title': titlecontroller.text});
+
+                  print(_titlecontroller.text);
+
+                  _firestore.collection("work").add({
+                    'title': _titlecontroller.text,
+                    'sender': "mikhela65@gmail.com",
+                    'description': "desc",
+                    'link': ""
+                  });
                 },
                 child: Text("ADD "))
           ],
