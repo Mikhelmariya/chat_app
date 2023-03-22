@@ -40,20 +40,101 @@ class AppScreen extends StatelessWidget {
     }
   }
 
+  // // For getting all datas in database , its like pulling the same everytime
+  // void getMessages() async {
+  //   final database = await _firestore.collection('work').get();
+  //   for (var datas in database.docs) {
+  //     print(datas.data());
+  //   }
+  // }
+
+  // using stream but its not run automatically on trigger
+  void messagesStream() async {
+    await for (var snapshot in _firestore.collection('work').snapshots()) {
+      for (var datas in snapshot.docs) {
+        print(datas.data());
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.black,
         body: Column(
           children: [
-            TextField(
-              keyboardType: TextInputType.text,
-              controller: _titlecontroller,
-              // onChanged: (value) {
-              //   _titletext = value;
-              // },
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 400,
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      autofocus: true,
+                      controller: _titlecontroller,
+                      style: TextStyle(color: Colors.tealAccent),
+                      decoration: InputDecoration(
+                        labelText: "Enter the title of your application",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 3, color: Colors.tealAccent),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 400,
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      autofocus: true,
+                      controller: _titlecontroller,
+                      style: TextStyle(color: Colors.tealAccent),
+                      decoration: InputDecoration(
+                        labelText: "Give a description for your project",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 3, color: Colors.tealAccent),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 400,
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      autofocus: true,
+                      controller: _titlecontroller,
+                      style: TextStyle(color: Colors.tealAccent),
+                      decoration: InputDecoration(
+                        labelText: "Provide a link to view your work",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 3, color: Colors.tealAccent),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
+
+            SizedBox(
+              height: 40,
+            ),
+            // StreamBuilder<QuerySnapshot>(
+            //   stream: _firestore.collection('work').snapshots(),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       final datas = snapshot.data!.docs;
+            //       List<Text> titleWidgets = [];
+            //       for (var message in datas) {
+            //         final titles = message.data.t;
+            //       }
+            //     }
+            //   },
+            // ),
             CarouselSlider(
               items: [
                 My_App(
@@ -84,7 +165,15 @@ class AppScreen extends StatelessWidget {
                   enableInfiniteScroll: false,
                   height: MediaQuery.of(context).size.height * .75),
             ),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  side: BorderSide(
+                      color: Colors.greenAccent, width: 5), // Background color
+                ),
                 onPressed: () {
                   print("text");
 
