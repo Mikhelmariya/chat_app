@@ -19,16 +19,26 @@ Future<void> _launchUrl(String url) async {
 
 String _titletext = "app";
 
-class AppScreen extends StatelessWidget {
+class AppScreen extends StatefulWidget {
+  static const String id = "apps";
+
+  @override
+  State<AppScreen> createState() => _AppScreenState();
+}
+
+class _AppScreenState extends State<AppScreen> {
   final _titlecontroller = TextEditingController();
+
   final _descontroller = TextEditingController();
 
   final controller = PageController();
 
-  static const String id = "apps";
   final _firestore = FirebaseFirestore.instance;
+
   final _auth = FirebaseAuth.instance;
+
   var loggedinuser = "";
+
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser!;
@@ -42,14 +52,6 @@ class AppScreen extends StatelessWidget {
   }
 
   // // For getting all datas in database , its like pulling the same everytime
-  // void getMessages() async {
-  //   final database = await _firestore.collection('work').get();
-  //   for (var datas in database.docs) {
-  //     print(datas.data());
-  //   }
-  // }
-
-  // using stream but its not run automatically on trigger
   void messagesStream() async {
     await for (var snapshot in _firestore.collection('work').snapshots()) {
       for (var datas in snapshot.docs) {
@@ -136,31 +138,13 @@ class AppScreen extends StatelessWidget {
             //     }
             //   },
             // ),
-            CarouselSlider(
-              items: [
-                My_App(
-                  title: _titlecontroller.text,
-                  description: _descontroller.text,
-                  image: "images/bible.png",
-
-                  //_launchUrl("https://bible-verse-generator.web.app/"),
-                ),
-                //   My_App(
-                //     title: "Tic Tac Toe ",
-                //     description: "Try this out ",
-                //     image: "images/xox.png",
-                //   ),
-                //   My_App(
-                //     title: "Let's Quiz",
-                //     description: "Try this out ",
-                //     image: "images/quizapp.png",
-                //   ),
-                //   My_App(
-                //     title: "Me Myself",
-                //     description: "check this out ",
-                //     image: "images/MI.png",
-                //   ),
-              ],
+            CarouselSlider.builder(
+              itemCount: 3,
+              itemBuilder:
+                  (BuildContext context, int itemIndex, int pageViewIndex) =>
+                      Myapp(
+                          titlecontroller: _titlecontroller,
+                          descontroller: _descontroller),
               options: CarouselOptions(
                   enableInfiniteScroll: false,
                   height: MediaQuery.of(context).size.height * .75),
@@ -168,28 +152,75 @@ class AppScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  side: BorderSide(
-                      color: Colors.greenAccent, width: 5), // Background color
-                ),
-                onPressed: () {
-                  print("text");
+            Row(
+              children: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      side: BorderSide(
+                          color: Colors.greenAccent,
+                          width: 5), // Background color
+                    ),
+                    onPressed: () {
+                      print("text");
 
-                  print(_titlecontroller.text);
+                      print(_titlecontroller.text);
 
-                  _firestore.collection("work").add({
-                    'title': _titlecontroller.text,
-                    'sender': loggedinuser,
-                    'description': _descontroller.text,
-                    'link': ""
-                  });
-                },
-                child: Text("ADD "))
+                      _firestore.collection("work").add({
+                        'title': _titlecontroller.text,
+                        'sender': loggedinuser,
+                        'description': _descontroller.text,
+                        'link': ""
+                      });
+                    },
+                    child: Text("ADD ")),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      side: BorderSide(
+                          color: Colors.greenAccent,
+                          width: 5), // Background color
+                    ),
+                    onPressed: () {
+                      My_App newApp = My_App(
+                        title: _titlecontroller.text,
+                        description: _descontroller.text,
+                        image: "images/bible.png",
+                      );
+                      setState(() {
+                        newApp;
+                      });
+                    },
+                    child: Text("ADD new card ")),
+              ],
+            )
           ],
         ),
       ),
+    );
+  }
+}
+
+class Myapp extends StatelessWidget {
+  const Myapp({
+    Key? key,
+    required TextEditingController titlecontroller,
+    required TextEditingController descontroller,
+  })  : _titlecontroller = titlecontroller,
+        _descontroller = descontroller,
+        super(key: key);
+
+  final TextEditingController _titlecontroller;
+  final TextEditingController _descontroller;
+
+  @override
+  Widget build(BuildContext context) {
+    return My_App(
+      title: _titlecontroller.text,
+      description: _descontroller.text,
+      image: "images/bible.png",
+
+      //_launchUrl("https://bible-verse-generator.web.app/"),
     );
   }
 }
