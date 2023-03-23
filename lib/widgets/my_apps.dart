@@ -27,7 +27,7 @@ class My_App extends StatelessWidget {
           Text(
             description,
             style: TextStyle(
-                fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Spacer(),
           Image.asset(image),

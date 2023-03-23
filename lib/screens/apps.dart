@@ -21,13 +21,14 @@ String _titletext = "app";
 
 class AppScreen extends StatelessWidget {
   final _titlecontroller = TextEditingController();
+  final _descontroller = TextEditingController();
 
   final controller = PageController();
 
   static const String id = "apps";
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
-
+  var loggedinuser = "";
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser!;
@@ -89,7 +90,7 @@ class AppScreen extends StatelessWidget {
                     child: TextField(
                       keyboardType: TextInputType.text,
                       autofocus: true,
-                      controller: _titlecontroller,
+                      controller: _descontroller,
                       style: TextStyle(color: Colors.tealAccent),
                       decoration: InputDecoration(
                         labelText: "Give a description for your project",
@@ -139,8 +140,7 @@ class AppScreen extends StatelessWidget {
               items: [
                 My_App(
                   title: _titlecontroller.text,
-                  description:
-                      "This app generates random bible verse on tapping the button",
+                  description: _descontroller.text,
                   image: "images/bible.png",
 
                   //_launchUrl("https://bible-verse-generator.web.app/"),
@@ -181,8 +181,8 @@ class AppScreen extends StatelessWidget {
 
                   _firestore.collection("work").add({
                     'title': _titlecontroller.text,
-                    'sender': "mikhela65@gmail.com",
-                    'description': "desc",
+                    'sender': loggedinuser,
+                    'description': _descontroller.text,
                     'link': ""
                   });
                 },
