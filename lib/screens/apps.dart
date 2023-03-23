@@ -38,6 +38,7 @@ class _AppScreenState extends State<AppScreen> {
   final _auth = FirebaseAuth.instance;
 
   var loggedinuser = "";
+  int count = 0;
 
   void getCurrentUser() async {
     try {
@@ -138,8 +139,9 @@ class _AppScreenState extends State<AppScreen> {
             //     }
             //   },
             // ),
+
             CarouselSlider.builder(
-              itemCount: 3,
+              itemCount: count,
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) =>
                       Myapp(
@@ -188,7 +190,7 @@ class _AppScreenState extends State<AppScreen> {
                         image: "images/bible.png",
                       );
                       setState(() {
-                        newApp;
+                        count = count + 1;
                       });
                     },
                     child: Text("ADD new card ")),
