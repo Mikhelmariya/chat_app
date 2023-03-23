@@ -155,6 +155,7 @@ class _AppScreenState extends State<AppScreen> {
               height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
